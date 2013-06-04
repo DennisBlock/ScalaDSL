@@ -7,7 +7,9 @@ object Datum {
   val und = new Verbund
   
   def Heute = new Datum(Calendar.getInstance)
-  def heute = Heute
+  
+  def Morgen = Heute + 1 Tag
+  def Gestern = Heute -1 Tag
 
   implicit class Monate(x: Int) {
     private val datum = Heute
@@ -35,10 +37,10 @@ class Datum(datum: Calendar) {
     datum.set(Calendar.YEAR, jahr)
     this
   }
-
+  
   private var last = 0;
 
-  def plus(x: Int) = { last = x; this }
+  def plus(x: Int) = { last = x;  this }
   def minus(x: Int) = { last = -x; this }
   
   def +(x: Int) = plus(x)
