@@ -40,8 +40,8 @@ class Datum(datum: Calendar) {
   
   private var last = 0;
 
-  def plus(x: Int) = { println("plus"); last = x;  this }
-  def minus(x: Int) = { println("minus"); last = -x; this }
+  def plus(x: Int) = { last = x;  this }
+  def minus(x: Int) = { last = -x; this }
   
   def +(x: Int) = plus(x)
   def -(x: Int) = minus(x)
@@ -49,17 +49,17 @@ class Datum(datum: Calendar) {
   def setTag(tag: Int): Datum = { datum.set(Calendar.DAY_OF_MONTH, tag); this }
   def setMonat(monat: Int): Datum = { datum.set(Calendar.MONTH, monat); this }
 
-  def Tag: Datum = { println("tag"); datum.add(Calendar.DAY_OF_MONTH, last); this }
+  def Tag: Datum = { datum.add(Calendar.DAY_OF_MONTH, last); this }
   def Tag(und: Verbund): Datum = Tag
   def Tage: Datum = Tag
   def Tage(und: Verbund): Datum = Tag
   
-  def Monat: Datum = { println("monat"); datum.add(Calendar.MONTH, last); this }
+  def Monat: Datum = { datum.add(Calendar.MONTH, last); this }
   def Monat(und: Verbund): Datum = Monat
   def Monate = Monat
   def Monate(und: Verbund): Datum = Monat
   
-  def Jahr: Datum = { println("jahr"); datum.add(Calendar.YEAR, last); this }
+  def Jahr: Datum = { datum.add(Calendar.YEAR, last); this }
   def Jahr(und: Verbund): Datum = Monat
   def Jahre = Jahr
   def Jahre(und: Verbund): Datum = Monat
