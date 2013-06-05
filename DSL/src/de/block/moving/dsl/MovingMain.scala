@@ -6,9 +6,13 @@ import java.awt.Dimension
 import java.awt.Color
 import scala.swing.Frame
 
-object MovingMain {
+object MovingMain extends Runnable{
   def main(args: Array[String]) {
 	  new Controller
+  }
+  
+  def run() {
+    
   }
 }
 
@@ -24,6 +28,7 @@ class Controller {
   val frame = new Frame {
     contents = panel
     visible = true
+    closeOperation
   }
 }
 
