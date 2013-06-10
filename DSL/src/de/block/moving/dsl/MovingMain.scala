@@ -1,35 +1,20 @@
 package de.block.moving.dsl
 
-import scala.swing.MainFrame
-import scala.swing.SimpleSwingApplication
-import java.awt.Dimension
 import java.awt.Color
+import java.awt.Dimension
+
 import scala.swing.Frame
 
-object MovingMain extends Runnable{
+import javax.swing.WindowConstants
+
+object MovingMain {
   def main(args: Array[String]) {
-	  new Controller
+	  (new Controller) start
+	  
+//	  Gehe nach unten
+//	  Gehe nach links
+//	  solange links frei gehe nach unten
   }
-  
-  def run() {
-    
-  }
+
 }
 
-class Controller {
-  val block = new Block(1, 1)
-
-  val panel = new DrawPanel(block) {
-    minimumSize = new Dimension(50 * 10, 50 * 10)
-    preferredSize = minimumSize
-    maximumSize = minimumSize
-    background = Color.white
-  }
-  val frame = new Frame {
-    contents = panel
-    visible = true
-    closeOperation
-  }
-}
-
-class Block(var x: Int, var y: Int)

@@ -12,7 +12,7 @@ object DrawPanel {
 }
 
 class DrawPanel(block: Block) extends Panel {
-
+  import de.block.moving.dsl.DrawPanel._
   private val level = Array[Array[Int]](
     Array[Int](1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
     Array[Int](1, 0, 0, 1, 0, 0, 0, 0, 0, 1),
@@ -25,18 +25,6 @@ class DrawPanel(block: Block) extends Panel {
     Array[Int](1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
     Array[Int](1, 1, 1, 1, 1, 1, 1, 1, 1, 1))
 
-  /*	   0  1  2  3  4  5  6  7  8  9
-   * 	0 (1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  		1  1, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-		2  1, 0, 0, 1, 0, 1, 0, 1, 0, 1,
-		3  1, 0, 1, 1, 0, 1, 1, 3, 0, 1,
-		4  1, 0, 0, 0, 0, 0, 1, 0, 0, 1,
-		5  1, 0, 0, 0, 0, 0, 1, 0, 0, 1,
-		6  1, 0, 1, 1, 0, 0, 1, 0, 1, 1,
-		7  1, 0, 0, 1, 1, 0, 0, 0, 0, 1,
-		8  1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-		9  1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-  */
   override def paintComponent(g: Graphics2D) {
     drawLevel(g)
 
@@ -54,15 +42,25 @@ class DrawPanel(block: Block) extends Panel {
       y <- 0 until level(x).length
     } {
       level(y)(x) match {
-        case DrawPanel.Wall => g.setColor(Color.BLACK)
-        case DrawPanel.None => g.setColor(Color.WHITE)
-        case DrawPanel.Finish => g.setColor(Color.BLUE)
+        case Wall => g.setColor(Color.BLACK)
+        case None => g.setColor(Color.WHITE)
+        case Finish => g.setColor(Color.BLUE)
         case _ => println("undefined on " + x + "/" + y)
       }
       g.fillRect(x * 50, y * 50, 50, 50)
       g.setColor(Color.WHITE)
-      g.drawString(x + ", " + y, x * 50 + 15, y * 50 + 25)
-      
     }
+  }
+
+  def isCollidedWithWall(): Boolean = {
+    val x = block.x
+    val y = block.y
+    if (level(y)(x) == Wall) true else false
+  }
+
+  def isAtFinish(): Boolean = {
+    val x = block.x
+    val y = block.y
+    if (level(y)(x) == Finish) true else false
   }
 }
