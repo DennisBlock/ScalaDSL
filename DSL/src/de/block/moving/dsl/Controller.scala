@@ -8,7 +8,7 @@ import scala.collection.mutable.Queue
 
 class Controller extends Runnable {
   // TODO Queue mit Functions
-  private var queue = new Queue[String]
+  private var queue = new Queue[Function0[Unit]]
   var running = true
   val block = new Block
 
@@ -28,11 +28,12 @@ class Controller extends Runnable {
   def isRunning: Boolean = running
   def stop = running = false  
   def start = new Thread(this).start()
+  def fillQueue(f: () => Unit) = queue += f
   
   def run() = {
     while (isRunning) {
       Thread.sleep(300L)
-//      queue 
+//    queue 
       block.goDown
       if (panel.isCollidedWithWall == true) { stop }
       else if(panel.isAtFinish == true) { stop }

@@ -14,6 +14,7 @@ object MovingMain {
 //	  Gehe nach unten
 //	  Gehe nach links
 //	  solange links frei gehe nach unten
+	  //gehe hoch
   }
 
 }
