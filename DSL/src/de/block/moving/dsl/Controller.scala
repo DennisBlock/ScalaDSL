@@ -52,4 +52,10 @@ class Controller extends Runnable {
     }
   }
   
+  def isCollided():Boolean = panel isCollidedWithWall
+  def hasWallOver():Boolean = panel hasWallOver
+  def hasWallUnder():Boolean = panel hasWallUnder
+  def hasWallLeft():Boolean = panel hasWallLeft
+  def hasWallRight():Boolean = panel hasWallRight
+  
 }
