@@ -1,16 +1,14 @@
 package de.block.moving.dsl
 
-import java.awt.Color
-import java.awt.Dimension
-
-import scala.swing.Frame
-
-import javax.swing.WindowConstants
-
-object MovingMain {
+object MovingMain  {
   def main(args: Array[String]) {
-	  (new Controller) start
-	  
+	  import de.block.moving.dsl.MovingDSL._
+//	  var dsl = new MovingDSL
+	  Gehe(7) mal(Unten()) 
+	  Gehe(6) mal Rechts() 
+	  Gehe(5) mal Oben() 
+	  Start  
+	   
 //	  Gehe nach unten
 //	  Gehe nach links
 //	  solange links frei gehe nach unten

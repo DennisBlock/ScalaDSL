@@ -1,8 +1,8 @@
 package de.block.moving.dsl
 
 class Block(var x: Int = 1, var y: Int = 1) {
-  def goUp : Unit = y = y - 1
-  def goDown = y = y + 1
-  def goRight = x = x + 1
-  def goLeft = x = x - 1
+  def goUp  : ()  => Boolean= {() =>  y = y - 1; true}
+  def goDown : ()  => Boolean = {()  =>  y = y + 1; ; true}
+  def goRight : ()  => Boolean= {() => x = x + 1; true}
+  def goLeft : ()  => Boolean= {() => x = x - 1; true}
 }

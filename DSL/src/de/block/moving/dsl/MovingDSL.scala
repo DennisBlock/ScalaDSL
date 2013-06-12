@@ -1,32 +1,37 @@
 package de.block.moving.dsl
-
+//object Moving {
+//}
 object MovingDSL {
+//  import de.block.moving.dsl.Moving._
   private val controller = new Controller
-
-  //  trait Direction[+T]
-  //  case class Unten extends Direction[Unten]
-  //  case class Oben extends Direction[Oben]
-  //  case class Links extends Direction[Links]
-  //  case class Rechts extends Direction[Rechts]
-  //  
-  //  var lastDirection : Direction = Unten
-  //  var last : Int = 0
-  //  
-  //  
-  //  def Start = controller start
+  
+  
+  sealed abstract class Richtung
+  case class Unten extends Richtung
+  case class Oben extends Richtung
+  case class Links extends Richtung
+  case class Rechts extends Richtung
+  
   var x = 0
+  
   def Gehe(x: Int) = {
     this.x = x
+    this
   }
-  //  def ->[T <: Direction](d: T) = { lastDirection = d; controller putDirection d; this}
 
   def mal(richtung: Richtung) = {
     for (i <- 0 until x) {
-//    	controller fillQueue controller.block.goDown
+      richtung match {
+        case Unten() => controller fillQueue (controller.block.goDown)
+        case Oben() => controller fillQueue (controller.block.goUp)
+        case Links() => controller fillQueue (controller.block.goLeft)
+        case Rechts() => controller fillQueue (controller.block.goRight)
+        case _ => println("aahh")
+      }
+
     }
   }
-  //  }
+
+  def Start = controller start
 
 }
-
-case class Richtung
