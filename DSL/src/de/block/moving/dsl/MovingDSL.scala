@@ -33,11 +33,11 @@ class MovingDSL {
   def mal(richtung: Richtung): MovingDSL = {
     for (i <- 0 until x) {
       richtung match {
-        case Runter() => controller fillQueue (controller.block.goDown)
-        case Hoch() => controller fillQueue (controller.block.goUp)
-        case Links() => controller fillQueue (controller.block.goLeft)
-        case Rechts() => controller fillQueue (controller.block.goRight)
-        case _ => println("aahh")
+        case Runter() => controller fuegeHinzu (controller.block.geheRunter)
+        case Hoch() => controller fuegeHinzu (controller.block.geheHoch)
+        case Links() => controller fuegeHinzu (controller.block.geheLinks)
+        case Rechts() => controller fuegeHinzu (controller.block.geheRechts)
+        case _ => println("Fehlerhafte Richtungsangabe!")
       }
 
     }
@@ -46,39 +46,39 @@ class MovingDSL {
 
   def wand(richtung: Richtung) = {
     richtung match {
-      case Runter() => controller fillQueue (() =>
+      case Runter() => controller fuegeHinzu (() =>
         {
-          if (controller hasWallUnder)
+          if (controller hatWandUnten)
             true
           else {
-            controller.block.goDown()
+            controller.block.geheRunter()
             false
           }
         })
-      case Hoch() => controller fillQueue (() =>
+      case Hoch() => controller fuegeHinzu (() =>
         {
-          if (controller hasWallOver)
+          if (controller hatWandOben)
             true
           else {
-            controller.block.goUp()
+            controller.block.geheHoch()
             false
           }
         })
-      case Links() => controller fillQueue (() =>
+      case Links() => controller fuegeHinzu (() =>
         {
-          if (controller hasWallLeft)
+          if (controller hatWandLinks)
             true
           else {
-            controller.block.goLeft()
+            controller.block.geheLinks()
             false
           }
         })
-      case Rechts() => controller fillQueue (() =>
+      case Rechts() => controller fuegeHinzu (() =>
         {
-          if (controller hasWallRight)
+          if (controller hatWandRechts)
             true
           else {
-            controller.block.goRight()
+            controller.block.geheRechts()
             false
           }
         })

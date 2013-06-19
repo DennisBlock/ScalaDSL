@@ -52,34 +52,34 @@ class DrawPanel(block: Block) extends Panel {
     }
   }
 
-  def isCollidedWithWall(): Boolean = {
+  def istMitWandKollidiert(): Boolean = {
     val x = block.x
     val y = block.y
     level(y)(x) == Wall
   }
 
-  def isAtFinish(): Boolean = {
+  def istAmZiel(): Boolean = {
     val x = block.x
     val y = block.y
     level(y)(x) == Finish
   }
 
-  def hasWallOver(): Boolean = {
+  def hatWandOben(): Boolean = {
     val x = block.x
     val y = block.y
     level(y - 1)(x) == Wall
   }
-  def hasWallUnder(): Boolean = {
+  def hatWandUnten(): Boolean = {
     val x = block.x
     val y = block.y
     level(y + 1)(x) == Wall
   }
-  def hasWallLeft(): Boolean = {
+  def hatWandLinks(): Boolean = {
     val x = block.x
     val y = block.y
     level(y)(x - 1) == Wall
   }
-  def hasWallRight(): Boolean = {
+  def hatWandRechts(): Boolean = {
     val x = block.x
     val y = block.y
     level(y)(x + 1) == Wall

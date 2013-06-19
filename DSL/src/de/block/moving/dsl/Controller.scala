@@ -28,23 +28,22 @@ class Controller extends Runnable {
   }
 
   def isRunning: Boolean = running
-  def stop = running = false  
+  def stop = running = false
   def start = new Thread(this).start()
-  def fillQueue(f: () => Any) = list append f
-  
+  def fuegeHinzu(f: () => Any) = list append f
+
   def run() = {
     while (isRunning) {
-      if(next < list.size)
-      {
-    	  val f = list(next)
-    	  if(f() == true) next += 1
+      if (next < list.size) {
+        val f = list(next)
+        if (f() == true) next += 1
+      } else {
+        println("Keine weiteren Funktionen zum Ausführen vorhanden")
+        stop
       }
-      else{
-    	  println("Keine weiteren Funktionen zum Ausführen vorhanden")
-    	  stop	
-      }
-      if (panel.isCollidedWithWall == true) { stop; println("block ist gegen eine mauer gelaufen") }
-      else if(next == list.size && panel.isAtFinish == true ) { stop; println("block ist am Ziel") }
+      
+      if (panel.istMitWandKollidiert == true) { stop; println("Sie sind gegen eine Mauer gelaufen!") }
+      else if (next == list.size && panel.istAmZiel == true) { stop; println("Glückwunsch Sie sind am Ziel") }
 
       panel.repaint
       Thread.sleep(300L)
@@ -52,10 +51,9 @@ class Controller extends Runnable {
     }
   }
   
-  def isCollided():Boolean = panel isCollidedWithWall
-  def hasWallOver():Boolean = panel hasWallOver
-  def hasWallUnder():Boolean = panel hasWallUnder
-  def hasWallLeft():Boolean = panel hasWallLeft
-  def hasWallRight():Boolean = panel hasWallRight
-  
+  def hatWandOben(): Boolean = panel hatWandOben
+  def hatWandUnten(): Boolean = panel hatWandUnten
+  def hatWandLinks(): Boolean = panel hatWandLinks
+  def hatWandRechts(): Boolean = panel hatWandRechts
+
 }
