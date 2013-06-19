@@ -3,13 +3,14 @@ package de.block.datum.dsl
 import java.util.Calendar
 
 object Datum {
+  
   class Verbund
   val und = new Verbund
   
   def Heute = new Datum(Calendar.getInstance)
   
   def Morgen = Heute + 1 Tag
-  def Gestern = Heute -1 Tag
+  def Gestern = Heute - 1 Tag
 
   implicit class Monate(x: Int) {
     private val datum = Heute
@@ -29,10 +30,9 @@ object Datum {
 }
 
 class Datum(datum: Calendar) {
-  import Datum.Verbund
   
-  datum.clear(Calendar.HOUR)
-
+  import de.block.datum.dsl.Datum._
+  
   def apply(jahr: Int): Datum = {
     datum.set(Calendar.YEAR, jahr)
     this
@@ -64,8 +64,7 @@ class Datum(datum: Calendar) {
   def Jahre = Jahr
   def Jahre(und: Verbund): Datum = Monat
   
-  def und : Datum = this
-  
   override def toString = "%1$Td.%1$Tm.%1$TY" format datum
+  
 }
 

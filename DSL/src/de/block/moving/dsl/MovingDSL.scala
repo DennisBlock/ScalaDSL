@@ -1,6 +1,7 @@
 package de.block.moving.dsl
 object MovingDSL {
-  def Init = new MovingDSL
+  
+  def apply() = new MovingDSL
 
   sealed abstract class Richtung
   case class Runter extends Richtung
@@ -43,7 +44,6 @@ class MovingDSL {
     this
   }
 
-  //  def zur() = this
   def wand(richtung: Richtung) = {
     richtung match {
       case Runter() => controller fillQueue (() =>
@@ -87,6 +87,6 @@ class MovingDSL {
     this
   }
 
-  def Start() = controller start
+  def danke() = controller start
 
 }
