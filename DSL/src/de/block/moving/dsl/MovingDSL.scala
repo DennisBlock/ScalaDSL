@@ -28,8 +28,6 @@ class MovingDSL {
     this
   }
 
-  def gehe(verbund: Verbund) = this
-
   def mal(richtung: Richtung): MovingDSL = {
     for (i <- 0 until x) {
       richtung match {
@@ -43,8 +41,12 @@ class MovingDSL {
     }
     this
   }
+  
+  def danke() = controller start
+  
+  def gehe(verbund: Verbund) = this
 
-  def wand(richtung: Richtung) = {
+  def Wand(richtung: Richtung) = {
     richtung match {
       case Runter() => controller fuegeHinzu (() =>
         {
@@ -86,7 +88,4 @@ class MovingDSL {
 
     this
   }
-
-  def danke() = controller start
-
 }
